@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Finure | The Financial Operating System</title>
+    <title>Finure | Escrow Infrastructure for Business</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -26,16 +26,13 @@
                     },
                     colors: {
                         finure: {
-                            bg: '#ffffff',      /* Changed to White */
-                            card: '#f8fafc',    /* Light Gray for cards */
-                            border: '#e2e8f0',  /* Light Border */
-                            primary: '#20df6c', /* YOUR GREEN */
-                            text: '#0f172a',    /* Dark Slate for text */
-                            muted: '#64748b'    /* Muted Slate */
+                            bg: '#ffffff',       
+                            card: '#f8fafc',    
+                            border: '#e2e8f0',  
+                            primary: '#20df6c', 
+                            text: '#0f172a',    
+                            muted: '#64748b'    
                         }
-                    },
-                    backgroundImage: {
-                        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
                     }
                 }
             }
@@ -49,7 +46,7 @@
             overflow-x: hidden;
         }
 
-        /* Texture Overlay (Lighter for white theme) */
+        /* Texture Overlay */
         .noise-overlay {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
@@ -59,7 +56,7 @@
             background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='1'/%3E%3C/svg%3E");
         }
 
-        /* Glassmorphism - Adjusted for Light Theme */
+        /* Glassmorphism */
         .glass-panel {
             background: rgba(255, 255, 255, 0.85);
             backdrop-filter: blur(12px);
@@ -86,23 +83,24 @@
             position: fixed;
             top: 0; left: 0; width: 100vw; height: 100vh;
             z-index: -1;
-            /* Light gradient background behind 3D elements */
             background: radial-gradient(circle at 50% 50%, #f1fcf5 0%, #ffffff 70%); 
         }
 
-        /* Animation Utility */
         .anim-element { opacity: 0; transform: translateY(40px); }
         
         h1, h2, h3 { font-family: 'Space Grotesk', sans-serif; letter-spacing: -0.03em; }
 
-        /* Custom Scrollbar - Light Theme */
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: #fff; }
-        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
-        ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+        /* Status Dot Pulse */
+        .status-dot {
+            box-shadow: 0 0 0 0 rgba(32, 223, 108, 0.7);
+            animation: pulse-green 2s infinite;
+        }
         
-        /* Helper for the green button text */
-        .btn-green-text { color: #003314; }
+        @keyframes pulse-green {
+            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(32, 223, 108, 0.7); }
+            70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(32, 223, 108, 0); }
+            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(32, 223, 108, 0); }
+        }
     </style>
 </head>
 <body class="antialiased selection:bg-[#20df6c]/30">
@@ -114,20 +112,22 @@
         <div class="max-w-7xl mx-auto px-6 lg:px-8 mt-4">
             <div class="glass-panel rounded-full px-6 py-4 flex justify-between items-center">
                 <div class="flex items-center gap-3">
-                    <div class="w-10 h-10 overflow-hidden rounded-lg">
+                    <div class="w-10 h-10 overflow-hidden rounded-lg flex items-center justify-center">
                         <img src="logo.jpg" alt="Finure Logo" class="w-full h-full object-cover">
                     </div>
                     <span class="text-xl font-bold tracking-tight text-slate-900">Finure</span>
                 </div>
                 
                 <div class="hidden md:flex gap-8 text-sm font-medium text-slate-500">
-                    <a href="#solutions" class="hover:text-[#20df6c] transition-colors">Core System</a>
-                    <a href="#capabilities" class="hover:text-[#20df6c] transition-colors">Capabilities</a>
+                    <a href="#architecture" class="hover:text-[#20df6c] transition-colors">How Escrow Works</a>
+                    <a href="#use-cases" class="hover:text-[#20df6c] transition-colors">Use Cases</a>
+                    <a href="#security" class="hover:text-[#20df6c] transition-colors">Security & Compliance</a>
                     <a href="#pricing" class="hover:text-[#20df6c] transition-colors">Pricing</a>
                 </div>
 
-                <a href="#pricing" class="px-5 py-2 text-sm font-bold bg-[#0f172a] text-white rounded-full hover:bg-[#20df6c] hover:text-[#003314] transition-all shadow-lg">
-                    Get Access
+                <a href="#pricing" class="px-5 py-2 text-sm font-bold bg-[#0f172a] text-white rounded-full hover:bg-[#20df6c] hover:text-[#003314] transition-all shadow-lg flex items-center gap-2">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
+                    Create Escrow
                 </a>
             </div>
         </div>
@@ -137,208 +137,218 @@
         <div class="max-w-7xl mx-auto px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center relative z-10">
             
             <div class="space-y-8">
-                <div class="anim-element inline-flex items-center gap-2 px-3 py-1 rounded-full border border-[#20df6c]/30 bg-[#20df6c]/10 text-xs font-bold text-slate-700">
-                    <span class="w-2 h-2 rounded-full bg-[#20df6c] animate-pulse"></span>
-                    Finure OS Enterprise
-                </div>
-                
-                <h1 class="anim-element text-6xl lg:text-7xl font-bold leading-[1.05] text-slate-900">
-                    The Financial <br> 
-                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-slate-800 to-slate-500">Operating System.</span>
+                <h1 class="anim-element text-5xl lg:text-7xl font-bold leading-[1.05] text-slate-900">
+                    The Escrow <br> 
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#20df6c] to-emerald-700">Infrastructure</span>
+                    <br>for Business Payments.
                 </h1>
                 
                 <p class="anim-element text-lg text-slate-500 max-w-xl leading-relaxed">
-                    Accounting, Reconciliation, Escrow, and AI Intelligence in one unified platform. Built for MSMEs that demand scale, security, and trust.
-                </p>
+                    Hold money safely. Release only when work is done. 
+                    <strong class="text-slate-800">Finure guarantees trust</strong> between buyers and sellers.                </p>
                 
-                <div class="anim-element flex flex-col sm:flex-row gap-4 pt-4">
-                    <button class="px-8 py-4 bg-[#20df6c] hover:bg-[#1ac760] text-[#003314] font-bold rounded-xl transition-all shadow-[0_10px_30px_-10px_rgba(32,223,108,0.4)]">
-                        Start Free Trial
-                    </button>
-                    
-                    <button class="px-8 py-4 bg-white border border-slate-200 hover:border-[#20df6c] text-slate-700 font-medium rounded-xl transition-all flex items-center gap-2 shadow-sm">
-                        <span>View Architecture</span>
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-                    </button>
                 </div>
+
+            <div class="hidden lg:block relative h-[500px] w-full anim-element perspective-container" data-tilt data-tilt-max="3" data-tilt-speed="1000">
+                <div class="absolute inset-0 m-auto w-[90%] h-[340px] bg-white rounded-2xl border border-slate-200 p-8 shadow-2xl flex flex-col">
+                    
+                    <div class="flex justify-between items-start mb-8 border-b border-slate-100 pb-4">
+                        <div>
+                            <div class="text-xs text-slate-400 uppercase tracking-widest font-bold mb-1">Escrow ID</div>
+                            <div class="font-mono text-slate-900 font-bold">#FIN-98231</div>
+                        </div>
+                        <div class="flex items-center gap-2 bg-[#20df6c]/10 px-3 py-1 rounded-full">
+                            <div class="w-2 h-2 rounded-full bg-[#20df6c] animate-pulse"></div>
+                            <span class="text-xs font-bold text-[#006e2e] uppercase">Funds Secured</span>
+                        </div>
+                    </div>
+
+                    <div class="text-center mb-8">
+                        <div class="text-sm text-slate-500 mb-1">Total Amount Locked</div>
+                        <div class="text-5xl font-bold text-slate-900 tracking-tight">₹12,50,000</div>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-4 text-xs font-mono border-t border-slate-100 pt-6 mt-auto">
+                        <div class="space-y-1">
+                            <span class="text-slate-400">Buyer Entity</span>
+                            <div class="font-bold text-slate-900">ABC Pvt Ltd.</div>
+                            <div class="text-green-600">✓ Verified</div>
+                        </div>
+                        <div class="space-y-1 text-right">
+                            <span class="text-slate-400">Seller Entity</span>
+                            <div class="font-bold text-slate-900">XYZ Industries</div>
+                            <div class="text-green-600">✓ Verified</div>
+                        </div>
+                    </div>
+
+                    <div class="absolute bottom-0 left-0 w-full h-1 bg-slate-100 rounded-b-2xl overflow-hidden">
+                        <div class="h-full bg-[#20df6c] w-3/4 shadow-[0_0_10px_#20df6c]"></div>
+                    </div>
+                </div>
+
+                </div>
+        </div>
+    </section>
+
+    <section id="architecture" class="py-24 relative bg-slate-50">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="mb-16 anim-element max-w-2xl">
+                <h2 class="text-4xl font-bold mb-4 text-slate-900">Escrow Infrastructure Architecture</h2>
+                <p class="text-slate-500 text-lg">We replace trust-based handshakes with code-based guarantees. The three layers of the Finure system.</p>
             </div>
 
-            <div class="hidden lg:block relative h-[500px] w-full anim-element perspective-container" data-tilt data-tilt-max="5" data-tilt-speed="1000">
-                <div class="absolute inset-0 m-auto w-[90%] h-[380px] bg-white rounded-2xl border border-slate-200 p-6 shadow-2xl flex flex-col justify-between">
-                    <div class="flex justify-between items-center border-b border-slate-100 pb-4">
-                        <div class="flex gap-2">
-                            <div class="w-3 h-3 rounded-full bg-red-400"></div>
-                            <div class="w-3 h-3 rounded-full bg-yellow-400"></div>
-                            <div class="w-3 h-3 rounded-full bg-green-400"></div>
-                        </div>
-                        <div class="text-xs font-mono text-[#20df6c] font-bold">● System Operational</div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                
+                <div class="anim-element glass-card rounded-3xl p-8 relative overflow-hidden group">
+                    <div class="absolute top-0 right-0 w-24 h-24 bg-[#20df6c]/10 rounded-bl-[100px] transition-transform group-hover:scale-110"></div>
+                    <div class="w-12 h-12 bg-slate-900 rounded-lg flex items-center justify-center mb-6 text-white">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.384-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path></svg>
                     </div>
-                    
-                    <div class="space-y-4 font-mono text-xs text-slate-500 mt-4">
-                        <div class="flex justify-between"><span>> Ledger Sync</span><span class="text-slate-900 font-bold">Active</span></div>
-                        <div class="flex justify-between"><span>> Bank API</span><span class="text-slate-900 font-bold">Connected (HDFC, SBI)</span></div>
-                        <div class="flex justify-between"><span>> Escrow Status</span><span class="text-[#20df6c] font-bold">Secured</span></div>
-                        
-                        <div class="h-32 mt-6 relative overflow-hidden border-t border-slate-100 pt-4">
-                            <svg class="w-full h-full" viewBox="0 0 300 100" preserveAspectRatio="none">
-                                <path d="M0,100 C50,80 100,90 150,40 S250,60 300,10" fill="none" stroke="#20df6c" stroke-width="3" />
-                                <path d="M0,100 C50,80 100,90 150,40 S250,60 300,10 V100 H0 Z" fill="url(#grad)" opacity="0.1" />
-                                <defs>
-                                    <linearGradient id="grad" x1="0" y1="0" x2="0" y2="1">
-                                        <stop offset="0" stop-color="#20df6c"/>
-                                        <stop offset="1" stop-color="transparent"/>
-                                    </linearGradient>
-                                </defs>
-                            </svg>
-                        </div>
-                    </div>
+                    <h3 class="text-2xl font-bold mb-3 text-slate-900">Escrow Engine</h3>
+                    <p class="text-slate-500 mb-6 leading-relaxed">The core logic that holds funds. Set milestones, define inspection periods, and automate release triggers.</p>
+                    <ul class="space-y-3 text-sm text-slate-600 font-mono">
+                        <li class="flex items-center gap-2"><span class="text-[#20df6c] font-bold">✓</span> Milestone-based release</li>
+                        <li class="flex items-center gap-2"><span class="text-[#20df6c] font-bold">✓</span> Condition-based settlement</li>
+                        <li class="flex items-center gap-2"><span class="text-[#20df6c] font-bold">✓</span> Multi-party split capability</li>
+                    </ul>
                 </div>
+
+                <div class="anim-element glass-card rounded-3xl p-8 relative overflow-hidden group">
+                     <div class="absolute top-0 right-0 w-24 h-24 bg-blue-50 rounded-bl-[100px] transition-transform group-hover:scale-110"></div>
+                    <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-6 text-blue-700">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3 text-slate-900">Trust & Compliance</h3>
+                    <p class="text-slate-500 mb-6 leading-relaxed">The legal wrapper. Digital escrow agreements are generated automatically and signed via e-sign.</p>
+                    <ul class="space-y-3 text-sm text-slate-600 font-mono">
+                        <li class="flex items-center gap-2"><span class="text-blue-500 font-bold">✓</span> Immutable Audit Trails</li>
+                        <li class="flex items-center gap-2"><span class="text-blue-500 font-bold">✓</span> Auto-generated Contracts</li>
+                        <li class="flex items-center gap-2"><span class="text-blue-500 font-bold">✓</span> Dispute Window Logic</li>
+                    </ul>
+                </div>
+
+                <div class="anim-element glass-card rounded-3xl p-8 relative overflow-hidden group">
+                     <div class="absolute top-0 right-0 w-24 h-24 bg-purple-50 rounded-bl-[100px] transition-transform group-hover:scale-110"></div>
+                    <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-6 text-purple-700">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"></path></svg>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3 text-slate-900">Settlement Rails</h3>
+                    <p class="text-slate-500 mb-6 leading-relaxed">The movement of money. We hold funds in regulated nodal accounts and payout instantly upon approval.</p>
+                    <ul class="space-y-3 text-sm text-slate-600 font-mono">
+                        <li class="flex items-center gap-2"><span class="text-purple-500 font-bold">✓</span> Regulated Banking Partners</li>
+                        <li class="flex items-center gap-2"><span class="text-purple-500 font-bold">✓</span> Instant Payouts (IMPS/NEFT)</li>
+                        <li class="flex items-center gap-2"><span class="text-purple-500 font-bold">✓</span> SLA-backed releases</li>
+                    </ul>
+                </div>
+
             </div>
         </div>
     </section>
 
-    <section id="solutions" class="py-24 relative bg-slate-50">
+    <section id="use-cases" class="py-24 bg-white border-y border-slate-100">
         <div class="max-w-7xl mx-auto px-6 lg:px-8">
-            <div class="mb-16 anim-element">
-                <h2 class="text-4xl font-bold mb-4 text-slate-900">Core Architecture</h2>
-                <p class="text-slate-500">The foundational layers of the Finure Operating System.</p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-3 md:grid-rows-2 gap-6">
+            <h2 class="anim-element text-3xl font-bold mb-12 text-center text-slate-900">Who Uses Finure Escrow?</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                 
-                <div class="anim-element col-span-1 md:col-span-2 row-span-2 glass-card rounded-3xl p-10 relative overflow-hidden group">
-                    <div class="absolute inset-0 bg-gradient-to-br from-[#20df6c]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
-                    <div class="relative z-10">
-                        <div class="w-12 h-12 bg-[#20df6c]/20 rounded-lg flex items-center justify-center mb-6 text-[#006e2e]">
-                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
-                        </div>
-                        <h3 class="text-2xl font-bold mb-2 text-slate-900">Core Ledger & Accounting</h3>
-                        <p class="text-slate-500 mb-6">A real-time digital ledger that replaces Tally and Excel. Fully GST-ready structure with party-wise tracking.</p>
-                        
-                        <ul class="space-y-2 text-sm text-slate-600 font-mono">
-                            <li class="flex items-center gap-2"><span class="text-[#20df6c] font-bold">✓</span> Ledgers that stay balanced</li>
-                            <li class="flex items-center gap-2"><span class="text-[#20df6c] font-bold">✓</span> Vouchers created and linked correctly</li>
-                            <li class="flex items-center gap-2"><span class="text-[#20df6c] font-bold">✓</span> Real-time cash and bank view</li>
-                            <li class="flex items-center gap-2"><span class="text-[#20df6c] font-bold">✓</span> Stock and inventory always in sync</li>
-                            <li class="flex items-center gap-2"><span class="text-[#20df6c] font-bold">✓</span> No manual fixes or adjustments</li>
-                            <li class="flex items-center gap-2"><span class="text-[#20df6c] font-bold">✓</span> Accounting you can trust</li>
-                        </ul>
+                <div class="anim-element p-8 border border-slate-100 rounded-3xl hover:border-[#20df6c] transition-all hover:shadow-lg group bg-slate-50/50">
+                    <div class="text-4xl mb-6 group-hover:scale-110 transition-transform duration-300">🏢</div>
+                    <h4 class="font-bold text-xl mb-1 text-slate-900">B2B Trade & MSMEs</h4>
+                    <p class="text-xs font-bold text-[#20df6c] uppercase tracking-wide mb-4">Manufacturers • Wholesale • Distributors</p>
+                    <p class="text-slate-600 mb-6 leading-relaxed">Protects large-value transactions, ensures delivery obligations, and removes payment risk across supply chains.</p>
+                    <div class="border-l-4 border-[#20df6c] pl-4 italic text-slate-500 text-sm">
+                        “Escrow gives us guaranteed payment on every order — we can trade with confidence.”
                     </div>
                 </div>
 
-                <div class="anim-element glass-card rounded-3xl p-8 relative overflow-hidden">
-                    <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center mb-4 text-blue-600">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"></path></svg>
+                <div class="anim-element p-8 border border-slate-100 rounded-3xl hover:border-[#20df6c] transition-all hover:shadow-lg group bg-slate-50/50">
+                    <div class="text-4xl mb-6 group-hover:scale-110 transition-transform duration-300">🏗️</div>
+                    <h4 class="font-bold text-xl mb-1 text-slate-900">Projects & Services</h4>
+                    <p class="text-xs font-bold text-[#20df6c] uppercase tracking-wide mb-4">Construction • Agencies • Consultancies</p>
+                    <p class="text-slate-600 mb-6 leading-relaxed">Milestone-linked payments enforce delivery milestones before fund release.</p>
+                    <div class="border-l-4 border-[#20df6c] pl-4 italic text-slate-500 text-sm">
+                        “Payments get released only when work stages are approved — no delays.”
                     </div>
-                    <h3 class="text-lg font-bold mb-2 text-slate-900">Smart Reconciliation</h3>
-                    <p class="text-sm text-slate-500">Auto-fetch bank transactions and match them to invoices. Detect mismatches instantly.</p>
                 </div>
 
-                <div class="anim-element glass-card rounded-3xl p-8 relative overflow-hidden">
-                    <div class="w-10 h-10 bg-[#20df6c]/20 rounded-lg flex items-center justify-center mb-4 text-[#006e2e]">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+                <div class="anim-element p-8 border border-slate-100 rounded-3xl hover:border-[#20df6c] transition-all hover:shadow-lg group bg-slate-50/50">
+                    <div class="text-4xl mb-6 group-hover:scale-110 transition-transform duration-300">🛍️</div>
+                    <h4 class="font-bold text-xl mb-1 text-slate-900">D2C & E-Commerce Brands</h4>
+                    <p class="text-xs font-bold text-[#20df6c] uppercase tracking-wide mb-4">Brands with Online Stores</p>
+                    <p class="text-slate-600 mb-6 leading-relaxed">Replace risky COD with escrow-backed checkout — higher conversions, safer payments, and fewer disputes.</p>
+                    <div class="border-l-4 border-[#20df6c] pl-4 italic text-slate-500 text-sm">
+                        “Customers pay with confidence, and we get paid on delivery confirmation.”
                     </div>
-                    <h3 class="text-lg font-bold mb-2 text-slate-900">Payment Guarantee</h3>
-                    <p class="text-sm text-slate-500">Integrated Escrow locks funds until delivery. The ultimate trust layer for B2B & MSMEs.</p>
                 </div>
 
-            </div>
+                <div class="anim-element p-8 border border-slate-100 rounded-3xl hover:border-[#20df6c] transition-all hover:shadow-lg group bg-slate-50/50">
+                    <div class="text-4xl mb-6 group-hover:scale-110 transition-transform duration-300">📦</div>
+                    <h4 class="font-bold text-xl mb-1 text-slate-900">Logistics & Supply Chain</h4>
+                    <p class="text-xs font-bold text-[#20df6c] uppercase tracking-wide mb-4">Shipping & Delivery Networks</p>
+                    <p class="text-slate-600 mb-6 leading-relaxed">Delivery or proof-of-delivery triggers escrow release — reducing fraud and missed payments.</p>
+                    <div class="border-l-4 border-[#20df6c] pl-4 italic text-slate-500 text-sm">
+                        “We ship more, worry less — and payments are always protected.”
+                    </div>
+                </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
-                 <div class="anim-element glass-card rounded-3xl p-8 flex items-start gap-6">
-                    <div class="w-12 h-12 bg-purple-100 rounded-lg flex-shrink-0 flex items-center justify-center text-purple-600">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path></svg>
-                    </div>
-                    <div>
-                        <h3 class="text-xl font-bold mb-2 text-slate-900">Scan to Entry (AI-Powered)</h3>
-                        <p class="text-sm text-slate-500 mb-3">Turn any bill, invoice, or receipt into a verified accounting entry in seconds.
-Finure’s scans physical and digital documents, extracts data and posts directly to your books. No manual entry. No accounting errors.</p>
-                        <span class="text-xs bg-purple-100 text-purple-700 font-semibold px-2 py-1 rounded"> Just scan and move on</span>
-                    </div>
-                 </div>
-
-                 <div class="anim-element glass-card rounded-3xl p-8 flex items-start gap-6">
-                    <div class="w-12 h-12 bg-orange-100 rounded-lg flex-shrink-0 flex items-center justify-center text-orange-600">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
-                    </div>
-                    <div>
-                        <h3 class="text-xl font-bold mb-2 text-slate-900">Credit & Buyer Intelligence</h3>
-                        <p class="text-sm text-slate-500 mb-3">Track payment consistency scores. Identify risky buyers before you transact.</p>
-                        <span class="text-xs bg-orange-100 text-orange-700 font-semibold px-2 py-1 rounded">Risk Tagging</span>
-                    </div>
-                 </div>
             </div>
         </div>
     </section>
 
-    <section id="capabilities" class="py-24 bg-white border-y border-slate-100">
+    <section id="security" class="py-24 bg-slate-50">
         <div class="max-w-7xl mx-auto px-6 lg:px-8">
-            <h2 class="anim-element text-3xl font-bold mb-12 border-b border-slate-100 pb-6 text-slate-900">System Capabilities</h2>
+            <h2 class="anim-element text-3xl font-bold mb-12 border-b border-slate-200 pb-6 text-slate-900">System Capabilities</h2>
             
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                 
                 <div class="anim-element space-y-4">
                     <h4 class="text-slate-900 font-bold flex items-center gap-2">
-                        <span class="w-2 h-2 bg-slate-400 rounded-full"></span> Automation
+                        <span class="w-2 h-2 bg-[#20df6c] rounded-full"></span> Escrow Logic
                     </h4>
                     <ul class="text-sm text-slate-500 space-y-3">
-                        <li>• Automated Payment Reminders</li>
-                        <li>• Auto-freeze risky transactions</li>
-                        <li>• Low cash warnings</li>
-                        <li>• Rules Engine Configuration</li>
+                        <li>• Transaction & milestone-based escrow</li>
+                        <li>• Conditional fund locking & release</li>
+                        <li>• Auto-approval windows</li>
+                        <li>• Partial refunds</li>
                     </ul>
                 </div>
 
                 <div class="anim-element space-y-4">
                     <h4 class="text-slate-900 font-bold flex items-center gap-2">
-                        <span class="w-2 h-2 bg-slate-400 rounded-full"></span> Banking & Rails
+                        <span class="w-2 h-2 bg-[#20df6c] rounded-full"></span> Security & Compliance
                     </h4>
                     <ul class="text-sm text-slate-500 space-y-3">
-                        <li>• Multi-bank account sync</li>
-                        <li>• Unified cash view</li>
-                        <li>• API-ready architecture</li>
-                        <li>• Future-ready for UPI/B2B</li>
+                        <li>• Money Securely Locked </li>
+                        <li>• Nothing can be edited or hidden</li>
+                        <li>• Fair rules protect both sides</li>
+                        <li>• Digital Contracts (e-Sign)</li>
                     </ul>
                 </div>
 
                 <div class="anim-element space-y-4">
                     <h4 class="text-slate-900 font-bold flex items-center gap-2">
-                        <span class="w-2 h-2 bg-slate-400 rounded-full"></span> Management
+                        <span class="w-2 h-2 bg-[#20df6c] rounded-full"></span> Dispute Resolution
                     </h4>
                     <ul class="text-sm text-slate-500 space-y-3">
-                        <li>• Vendor & Customer Profiles</li>
-                        <li>• Transaction History</li>
-                        <li>• Accountant-friendly exports</li>
-                        <li>• Multi-user roles (Owner/Team)</li>
+                        <li>• Built-in dispute windows</li>
+                        <li>• Evidence upload & verification</li>
+                        <li>• Rule-based fund settlement</li>
+                        <li>• Funds Freeze Protocol</li>
                     </ul>
                 </div>
 
                 <div class="anim-element space-y-4">
                     <h4 class="text-slate-900 font-bold flex items-center gap-2">
-                        <span class="w-2 h-2 bg-[#20df6c] rounded-full"></span> Security & Scale
+                        <span class="w-2 h-2 bg-[#20df6c] rounded-full"></span> Infrastructure & Scale
                     </h4>
                     <ul class="text-sm text-slate-500 space-y-3">
-                        <li>• Bank-grade encryption</li>
-                        <li>• Audit logs & trails</li>
-                        <li>• Role-based access control</li>
-                        <li>• Scalable Enterprise API</li>
+                        <li>• API-first escrow architecture</li>
+                        <li>• Marketplace & platform ready</li>
+                        <li>• High-volume transaction handling</li>
+                        <li>• SLA-backed reliability & uptime</li>
                     </ul>
                 </div>
 
-            </div>
-        </div>
-    </section>
-
-    <section class="py-32 relative overflow-hidden bg-slate-50">
-        <div class="max-w-4xl mx-auto px-6 text-center anim-element">
-            <div class="mt-12">
-                <p class="text-3xl md:text-5xl font-bold text-slate-900">
-                    Finure is a complete <br>
-                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#20df6c] to-green-600">Financial Operating System</span>
-                </p>
-                <p class="mt-6 text-lg text-slate-500">
-                    Helping MSMEs earn trust, manage money, predict cash, and grow safely.
-                </p>
             </div>
         </div>
     </section>
@@ -346,54 +356,52 @@ Finure’s scans physical and digital documents, extracts data and posts directl
     <section id="pricing" class="py-24 relative bg-white">
         <div class="max-w-7xl mx-auto px-6 relative z-10">
             <div class="text-center mb-16 anim-element">
-                <h2 class="text-4xl font-bold mb-4 text-slate-900"> Pricing</h2>
-                <p class="text-slate-500">Build For Scale. Priced For Growth.</p>
+                <h2 class="text-4xl font-bold mb-4 text-slate-900">Transaction Pricing</h2>
+                <p class="text-slate-500">Pay only when you transact. No monthly subscriptions.</p>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
                 
-                <div class="anim-element glass-card p-10 rounded-3xl border-t-4 border-t-transparent hover:border-t-slate-900 relative group" data-tilt>
-                    <h3 class="text-2xl font-bold text-slate-900 mb-2">Annual Growth</h3>
-                    <p class="text-sm text-slate-500 mb-8">For scaling businesses.</p>
-                    
-                    <div class="flex items-baseline gap-1 mb-8">
-                        <span class="text-5xl font-bold text-slate-900 tracking-tight">₹5,999</span>
-                        <span class="text-slate-400">/year</span>
-                    </div>
-
-                    <ul class="space-y-4 mb-8 text-sm text-slate-600">
-                        <li class="flex gap-3 items-center"><span class="text-[#20df6c] font-bold">✓</span> Full Ledger & Accounting</li>
-                        <li class="flex gap-3 items-center"><span class="text-[#20df6c] font-bold">✓</span> Smart Reconciliation</li>
-                        <li class="flex gap-3 items-center"><span class="text-[#20df6c] font-bold">✓</span> GST-Ready Reports</li>
-                    </ul>
-
-                    <button class="w-full py-4 rounded-xl border border-slate-200 font-bold text-slate-900 hover:bg-slate-50 transition-all">
-                        Choose Annual
-                    </button>
-                </div>
-
                 <div class="anim-element glass-card p-10 rounded-3xl border border-[#20df6c]/30 bg-[#20df6c]/5 relative group" data-tilt>
-                    <div class="absolute -top-4 left-1/2 -translate-x-1/2 px-4 py-1 bg-gradient-to-r from-[#20df6c] to-green-400 rounded-full text-xs font-bold text-[#003314] shadow-lg uppercase tracking-wider">
-                        Most Popular
-                    </div>
-
-                    <h3 class="text-2xl font-bold text-slate-900 mb-2">Lifetime Access</h3>
-                    <p class="text-sm text-slate-500 mb-8">Own your infrastructure forever.</p>
+                    <div class="absolute top-0 right-0 bg-[#20df6c] text-[#003314] text-xs font-bold px-3 py-1 rounded-bl-xl rounded-tr-xl">INSTANT</div>
+                    
+                    <h3 class="text-2xl font-bold text-slate-900 mb-2">Standard Escrow</h3>
+                    <p class="text-sm text-slate-500 mb-8">For direct B2B transactions.</p>
                     
                     <div class="flex items-baseline gap-1 mb-8">
-                        <span class="text-5xl font-bold text-slate-900 tracking-tight">₹39,999</span>
-                        <span class="text-slate-400">/life</span>
+                        <span class="text-5xl font-bold text-slate-900 tracking-tight">0.3%</span>
+                        <span class="text-slate-400">/transaction</span>
                     </div>
 
                     <ul class="space-y-4 mb-8 text-sm text-slate-600">
-                        <li class="flex gap-3 items-center"><span class="text-[#20df6c] font-bold">✓</span> <b>All 13 Modules Included</b></li>
-                        <li class="flex gap-3 items-center"><span class="text-[#20df6c] font-bold">✓</span> Payment Guarantee Access</li>
-                        <li class="flex gap-3 items-center"><span class="text-[#20df6c] font-bold">✓</span> Future Updates Free</li>
-                        <li class="flex gap-3 items-center"><span class="text-[#20df6c] font-bold">✓</span> Dedicated Support</li>
+                        <li class="flex gap-3 items-center"><span class="text-[#20df6c] font-bold">✓</span> For B2B, D2C, and services</li>
+                        <li class="flex gap-3 items-center"><span class="text-[#20df6c] font-bold">✓</span> Charged only when money is released</li>
+                        <li class="flex gap-3 items-center"><span class="text-[#20df6c] font-bold">✓</span> Instant Payout</li>
+                        <li class="flex gap-3 items-center"><span class="text-[#20df6c] font-bold">✓</span> No subscriptions, no lock-in</li>
                     </ul>
 
                     <button class="w-full py-4 rounded-xl bg-[#20df6c] hover:bg-[#1ac760] font-bold text-[#003314] shadow-lg hover:shadow-[#20df6c]/30 hover:scale-[1.02] transition-all">
-                        Get Lifetime Access
+                        Create Transaction
+                    </button>
+                </div>
+
+                <div class="anim-element glass-card p-10 rounded-3xl border-t-4 border-t-slate-900 relative group" data-tilt>
+                    <h3 class="text-2xl font-bold text-slate-900 mb-2">Platform & Enterprise</h3>
+                    <p class="text-sm text-slate-500 mb-8">For Marketplaces & High Volume.</p>
+                    
+                    <div class="flex items-baseline gap-1 mb-8">
+                        <span class="text-4xl font-bold text-slate-900 tracking-tight">Custom</span>
+                    </div>
+
+                    <ul class="space-y-4 mb-8 text-sm text-slate-600">
+                        <li class="flex gap-3 items-center"><span class="text-slate-900 font-bold">✓</span> Volume Discounts</li>
+                        <li class="flex gap-3 items-center"><span class="text-slate-900 font-bold">✓</span> API Access</li>
+                        <li class="flex gap-3 items-center"><span class="text-slate-900 font-bold">✓</span> Dedicated Account Manager</li>
+                        <li class="flex gap-3 items-center"><span class="text-slate-900 font-bold">✓</span> Custom Contract Logic</li>
+                    </ul>
+
+                    <button class="w-full py-4 rounded-xl border border-slate-200 font-bold text-slate-900 hover:bg-slate-50 transition-all">
+                        Contact Sales
                     </button>
                 </div>
 
@@ -404,17 +412,22 @@ Finure’s scans physical and digital documents, extracts data and posts directl
     <footer class="border-t border-slate-200 bg-white py-16">
         <div class="max-w-7xl mx-auto px-6 text-center">
             <div class="flex justify-center mb-6">
-                 <div class="w-10 h-10 overflow-hidden rounded-lg">
+                <div class="w-10 h-10 overflow-hidden rounded-lg flex items-center justify-center">
                     <img src="logo.jpg" alt="Finure Logo" class="w-full h-full object-cover">
-                 </div>
+                </div>
             </div>
-            <h2 class="text-3xl font-bold mb-6 text-slate-900">Finure</h2>
+            
+            <p class="text-2xl md:text-3xl font-bold text-slate-900 mb-6 max-w-2xl mx-auto leading-tight">
+                Finure is the <span class="text-[#20df6c]">escrow layer</span> powering trust in business transactions.
+            </p>
+            <p class="text-slate-500 mb-10 text-sm tracking-wide uppercase font-semibold">Invisible. Secure. Non-negotiable.</p>
+
             <div class="flex justify-center gap-8 mb-8 text-sm text-slate-500">
-                <a href="#" class="hover:text-[#20df6c] transition">Product</a>
-                <a href="#" class="hover:text-[#20df6c] transition">Security</a>
-                <a href="#" class="hover:text-[#20df6c] transition">Terms</a>
+                <a href="#" class="hover:text-[#20df6c] transition">Escrow Agreement</a>
+                <a href="#" class="hover:text-[#20df6c] transition">Trust & Safety</a>
+                <a href="#" class="hover:text-[#20df6c] transition">API Docs</a>
             </div>
-            <p class="text-xs text-slate-400">© 2024 Finure Technologies. Built for Gandhinagar & the World.</p>
+            <p class="text-xs text-slate-400">© 2024 Finure Technologies.</p>
         </div>
     </footer>
 
@@ -423,7 +436,6 @@ Finure’s scans physical and digital documents, extracts data and posts directl
         const initThreeJS = () => {
             const container = document.getElementById('canvas-container');
             const scene = new THREE.Scene();
-            // Fog color matched to white background
             scene.fog = new THREE.FogExp2(0xffffff, 0.003); 
 
             const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
@@ -434,14 +446,12 @@ Finure’s scans physical and digital documents, extracts data and posts directl
             renderer.setPixelRatio(window.devicePixelRatio);
             container.appendChild(renderer.domElement);
 
-            // Rotating Globe Network
             const globeGroup = new THREE.Group();
             scene.add(globeGroup);
 
             // Wireframe Icosahedron
             const geometry = new THREE.IcosahedronGeometry(13, 1);
             const wireframe = new THREE.WireframeGeometry(geometry);
-            // Green Lines (#20df6c is 0x20df6c)
             const lineMaterial = new THREE.LineBasicMaterial({ color: 0x20df6c, transparent: true, opacity: 0.15 });
             const sphereLines = new THREE.LineSegments(wireframe, lineMaterial);
             globeGroup.add(sphereLines);
@@ -462,12 +472,10 @@ Finure’s scans physical and digital documents, extracts data and posts directl
             }
 
             particlesGeo.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
-            // Darker particles for visibility on white bg
             const particlesMat = new THREE.PointsMaterial({ size: 0.07, color: 0x0f172a, transparent: true, opacity: 0.4 });
             const particlesMesh = new THREE.Points(particlesGeo, particlesMat);
             globeGroup.add(particlesMesh);
 
-            // Mouse Interaction
             let mouseX = 0;
             let mouseY = 0;
             document.addEventListener('mousemove', (event) => {
@@ -495,7 +503,7 @@ Finure’s scans physical and digital documents, extracts data and posts directl
             animate();
         };
 
-        // 2. GSAP Reverse Scroll
+        // 2. GSAP Animations
         const initAnimations = () => {
             gsap.registerPlugin(ScrollTrigger);
             
@@ -514,7 +522,6 @@ Finure’s scans physical and digital documents, extracts data and posts directl
                 });
             });
 
-            // Parallax
             gsap.to("#canvas-container", {
                 scrollTrigger: { trigger: "body", start: "top top", end: "bottom bottom", scrub: 1 },
                 y: 150
@@ -529,10 +536,3 @@ Finure’s scans physical and digital documents, extracts data and posts directl
     </script>
 </body>
 </html>
-
-
-
-
-
-
-
